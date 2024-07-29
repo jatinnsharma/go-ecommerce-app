@@ -1,0 +1,66 @@
+Project Structure
+===================
+
+go-ecommerce-app/
+│
+│── main.go                # Entry point of the application
+│
+├── config/                # Configuration files
+│   └── config.go
+│
+├── infra/                 # Infrastructure files
+│   └── db.go              # Database connections
+│
+├── internal/              # Application logic
+│   ├── api/               # API related files
+│   │   ├── graphql/       # GraphQL files
+│   │   ├── grpc/          # gRPC files
+│   │   └── rest/          # REST API files
+│   │
+│   ├── domain/            # Data and entities
+│   │   └── user.go        # Example domain entity
+│   │
+│   ├── dto/               # Data Transfer Objects
+│   │   └── user_dto.go    # Example DTO
+│   │
+│   ├── helper/            # Helper functions
+│   │   └── util.go
+│   │
+│   ├── repository/        # Data access logic
+│   │   └── user_repo.go   # Example repository
+│   │
+│   └── service/           # Business logic
+│       └── user_service.go # Example service
+│
+└── pkg/                   # Third-party packages like mail, SMS, etc.
+    └── mail/
+        └── mail.go        # Email logic
+
+
+Explanation
+============
+1. go run main.go or go run *.go can be used to start the application.
+2. config/: 
+            This folder holds configuration files, such as environment settings, that can be shared across the application
+3. infra/:
+            Contains infrastructure-related code, like database connections and third-party service configurations.
+
+4. internal/:
+            The core of the application, where the main logic resides.
+
+5. domain/:
+            Holds domain entities that represent your business logic.
+6. dto/:    
+            Data Transfer Objects used for communication between different layers.
+7. helper/: 
+            Utility functions and helpers used throughout the application.
+8. repository/: 
+            Data access layer, managing database operations.
+9. service/: 
+            Business logic and service layer of the application.
+10. pkg/:
+            Contains code for reusable third-party packages like mailing or SMS services
+
+#cmd/dependencies
+- go mod init go-ecommerce-app (which is going to keep track of all the dependencies)
+- go get github.com/gofiber/fiber/v2   #(is like express framework)
