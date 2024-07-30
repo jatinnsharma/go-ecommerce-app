@@ -47,17 +47,12 @@ Explanation
 
 4. internal/:
             The core of the application, where the main logic resides.
-
-5. domain/:
-            Holds domain entities that represent your business logic.
-6. dto/:    
-            Data Transfer Objects used for communication between different layers.
-7. helper/: 
-            Utility functions and helpers used throughout the application.
-8. repository/: 
-            Data access layer, managing database operations.
-9. service/: 
-            Business logic and service layer of the application.
+        - api/:Contains subdirectories for different API types (GraphQL, gRPC, REST).
+        - domain/: Holds domain entities that represent your business logic.
+        - dto/: Data Transfer Objects used for communication between different layers.
+        - helper/:Utility functions and helpers used throughout the application.
+        - repository/: Data access layer, managing database operations.
+        - service/: Business logic and service layer of the application.
 10. pkg/:
             Contains code for reusable third-party packages like mailing or SMS services
 
