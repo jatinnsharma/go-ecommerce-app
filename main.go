@@ -12,53 +12,57 @@ func main() {
 	// declare a variable and initialize
 	app := fiber.New()
 
-	// config.LoadAppSettings()
-	HelperFunction()
-
-	// Basic Types: int , float64 , string ,bool
+	// Basic Types: int,float64,string,bool
 	// Composite Types : array,slice,map,struct
 	// Pointer types: *
 
-	// var age int
-	// var height float64
-	// var firstName string
-	// var isEmployed bool
+	// ARRAY
+	// var myFamily[3]string
+	// myFamily[0]="Jay"
+	// myFamily[1]="Jatin"
+	// myFamily[2]="Justin"
 
-	// age = 29
-	// height = 144.4
-	// firstName = "Jatin"
-	// isEmployed = true
-	// fmt.Println(age,height,firstName,isEmployed)
+	myFamily := [3]string{"Jay", "Jane", "Jatin"}
+	myFamily[1] = "kate"
 
-	// fmt.Printf("Age: %v\n",age)
-	// fmt.Printf("Height: %v\n",height)
-	// fmt.Printf("FirstName: %v\n",firstName)
-	// fmt.Printf("Employed?:: %v\n",isEmployed)
+	fmt.Println("My family : %v", myFamily)
 
-	// correct format specifier
-	// %d -> int , %f -> float , %s -> string , %t -> boolean
-
-	// automatically assign data (Type of data)
-	// At the time of declare go is going to be assigned
-	age := 29
-	height := 144.4
-	firstName := "Jatin"
-	isEmployed := true
-
-	fmt.Printf("Age: %d\n", age)
-	fmt.Printf("Height: %f\n", height)
-	fmt.Printf("FirstName: %s\n", firstName)
-	fmt.Printf("Employed?:: %t\n", isEmployed)
-
-	if age > 65 {
-		fmt.Println("Senior citizen")
-	} else if age > 16 {
-		fmt.Println("Adult")
+	// Multi-dimensional Array
+	myCourses := [3][2]string{
+		{"Go", "NodeJS"},  // 1st array
+		{"AWS", "GCP"},    // 2nd array
+		{"CDK", "Pulumi"}, // 3rd array
 	}
 
-	for i := 0; i <= 10; i++ {
-		fmt.Println("Hello World!")
-	}
+	fmt.Println("My courses : %v", myCourses)
+	// Result : My friends : %v [Mike Jatin Adam Sam Jay]
 
+	// Slice
+	var myFriends []string
+	myFriends = append(myFriends, "Mike", "Jatin", "Adam")
+	fmt.Println("My friends : %v", myFriends)
+	// Result : My friends : %v [Mike Jatin Adam]
+	
+	myFriends = append(myFriends, "Sam", "Jay")
+	// Result : My friends : %v [Mike Jatin Adam Sam Jay]
+	fmt.Println("My friends : %v", myFriends)
+
+	mySliceCourses := [][]string{
+		{"Go", "NodeJS"},  // 1st array
+		{"AWS", "GCP"},    // 2nd array
+		{"CDK", "Pulumi"}, // 3rd array
+	}
+	course := []string{"IAC", "Cloud Formation"}
+	mySliceCourses = append(mySliceCourses, course)
+	mySliceCourses = append(mySliceCourses, []string{"react", "react-native"})
+
+	fmt.Println("My slice courses : %v", mySliceCourses)
+	// Result : My slice courses : %v [[Go NodeJS] [AWS GCP] [CDK Pulumi] [IAC Cloud Formation] [react react-native]]
+
+	// make() use for create slice
+	myBeCourses := make([]int, 2, 10)
+
+	fmt.Println("My be courses : %v", myBeCourses)
+	// Result : My be courses : %v [0 0]
 	app.Listen("localhost:9000")
 }
