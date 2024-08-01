@@ -16,53 +16,48 @@ func main() {
 	// Composite Types : array,slice,map,struct
 	// Pointer types: *
 
-	// ARRAY
-	// var myFamily[3]string
-	// myFamily[0]="Jay"
-	// myFamily[1]="Jatin"
-	// myFamily[2]="Justin"
+	// Map
+	// Key value type
+	// store unique values , cannot keep the duplicate key
+	myWishList := make(map[string]string)
+	myWishList["first"] = "MacPro"
+	myWishList["second"] = "900 Billion Dollar"
+	myWishList["third"] = "a beautiful car"
 
-	myFamily := [3]string{"Jay", "Jane", "Jatin"}
-	myFamily[1] = "kate"
+	fmt.Println("My wish list %v", myWishList)
+	delete(myWishList, "third")
+	fmt.Println("My wish list %v", myWishList)
 
-	fmt.Println("My family : %v", myFamily)
 
-	// Multi-dimensional Array
-	myCourses := [3][2]string{
-		{"Go", "NodeJS"},  // 1st array
-		{"AWS", "GCP"},    // 2nd array
-		{"CDK", "Pulumi"}, // 3rd array
+	type Details struct {
+		Description string 
+		Images 		string
 	}
 
-	fmt.Println("My courses : %v", myCourses)
-	// Result : My friends : %v [Mike Jatin Adam Sam Jay]
+	// struct : group of variables
+	type Product struct {
+		Name  string `json:"product_name"`
+		Price float64 `json:"price"`
+		Details  Details `json:"details"`
+	}
 
-	// Slice
-	var myFriends []string
-	myFriends = append(myFriends, "Mike", "Jatin", "Adam")
-	fmt.Println("My friends : %v", myFriends)
-	// Result : My friends : %v [Mike Jatin Adam]
+	// var product Product
+	product := Product{
+		Name:  "MacPro", 
+		Price: 9000, 
+		Details:Details{
+			Description: "An incredible machine",
+			Images: "http:/macproimage.jpg",
+		},
+	}
+
+	product.Name = "Macbook Pro"
+
+	fmt.Println("My wish list %v", product)
 	
-	myFriends = append(myFriends, "Sam", "Jay")
-	// Result : My friends : %v [Mike Jatin Adam Sam Jay]
-	fmt.Println("My friends : %v", myFriends)
+	app.Get("/product", func(c *fiber.Ctx) error {
+		return c.JSON(product)
+	})
 
-	mySliceCourses := [][]string{
-		{"Go", "NodeJS"},  // 1st array
-		{"AWS", "GCP"},    // 2nd array
-		{"CDK", "Pulumi"}, // 3rd array
-	}
-	course := []string{"IAC", "Cloud Formation"}
-	mySliceCourses = append(mySliceCourses, course)
-	mySliceCourses = append(mySliceCourses, []string{"react", "react-native"})
-
-	fmt.Println("My slice courses : %v", mySliceCourses)
-	// Result : My slice courses : %v [[Go NodeJS] [AWS GCP] [CDK Pulumi] [IAC Cloud Formation] [react react-native]]
-
-	// make() use for create slice
-	myBeCourses := make([]int, 2, 10)
-
-	fmt.Println("My be courses : %v", myBeCourses)
-	// Result : My be courses : %v [0 0]
 	app.Listen("localhost:9000")
 }
