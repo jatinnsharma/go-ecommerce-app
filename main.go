@@ -2,62 +2,87 @@ package main
 
 import (
 	"fmt"
-	_ "go-ecommerce-app/config" // underscore(_) used for not in use still package needed indirectly
+	_ "go-ecommerce-app/config"
 
 	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
-	// Create a new Fiber instance
-	// declare a variable and initialize
+
 	app := fiber.New()
 
-	// Basic Types: int,float64,string,bool
-	// Composite Types : array,slice,map,struct
-	// Pointer types: *
+	// Conditional Statements
+	// Pointers
 
-	// Map
-	// Key value type
-	// store unique values , cannot keep the duplicate key
-	myWishList := make(map[string]string)
-	myWishList["first"] = "MacPro"
-	myWishList["second"] = "900 Billion Dollar"
-	myWishList["third"] = "a beautiful car"
+	/*
+		 Conditional Statements
+		- if else
+		- switch case
+		- select
+		- loop
+	*/
 
-	fmt.Println("My wish list %v", myWishList)
-	delete(myWishList, "third")
-	fmt.Println("My wish list %v", myWishList)
-
-
-	type Details struct {
-		Description string 
-		Images 		string
+	age := 29
+	if age > 65 {
+		fmt.Println("Senior Citizen")
+	} else if age > 17 {
+		fmt.Println("Adult")
+	} else {
+		fmt.Println("Child")
 	}
 
-	// struct : group of variables
-	type Product struct {
-		Name  string `json:"product_name"`
-		Price float64 `json:"price"`
-		Details  Details `json:"details"`
+	seatClass := "firstClass"
+
+	switch seatClass {
+	case "firstClass":
+		{
+			fmt.Println("You will get free drinks")
+		}
+	case "businessClass":
+		{
+			fmt.Println("You will get more legrooms")
+		}
+	default:
+		{
+			fmt.Println("You need to pay for services")
+		}
 	}
 
-	// var product Product
-	product := Product{
-		Name:  "MacPro", 
-		Price: 9000, 
-		Details:Details{
-			Description: "An incredible machine",
-			Images: "http:/macproimage.jpg",
-		},
+	var myFriends[]string
+	for i:=0;i<2;i++{
+		myNewFriend := fmt.Sprintf("Friend %d",i)
+		myFriends = append(myFriends, myNewFriend)
 	}
 
-	product.Name = "Macbook Pro"
+	for index,value := range myFriends{
+		fmt.Println(index,value)
+	}
 
-	fmt.Println("My wish list %v", product)
+	// isOver :=0
+	// for{
+	// 	isOver++;
+	// 	fmt.Println(isOver)
+	// 	if isOver > 99{
+	// 		fmt.Println("It's really over now")
+	// 		return 
+	// 	}
+	// }
+
+	// Infinite loop
+	// for {
+	// 	fmt.Println("I am listening till server alive!")
+	// } 
+
+
+	jay:= "laptop" // 0xc0001961e0 memory address
+	fmt.Println(jay) 
 	
-	app.Get("/product", func(c *fiber.Ctx) error {
-		return c.JSON(product)
-	})
+	var guest *string
+	fmt.Println(guest) // nil
+	guest = &jay 
+	fmt.Println(guest) // 0xc0001961e0 memory address
+	fmt.Println(*guest) // print laptop
+
 
 	app.Listen("localhost:9000")
 }
